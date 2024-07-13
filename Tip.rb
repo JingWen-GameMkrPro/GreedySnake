@@ -1,7 +1,7 @@
 require 'ruby2d'
 
 WELCOME_TIP = 'Welcome to Greedy Snake ! (Press \'Enter\' to Start...)'
-PLAYING_TIP = 'Score: ...'
+PLAYING_TIP = 'Score: ... (Press \'Enter\' to Exit...)'
 DEATH_TIP = 'Game Over ! (Press \'Enter\' to Restart...)'
 class Tip
   attr_accessor :current_tip
