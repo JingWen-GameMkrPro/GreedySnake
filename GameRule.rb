@@ -1,10 +1,14 @@
 require 'ruby2d'
 
+
 class GameRule
   attr_accessor :game_state
+  attr_accessor :score
+
 
   def initialize
     @game_state = 'wait'
+    @score = 0
   end
 
   def update
@@ -12,10 +16,14 @@ class GameRule
   end
 
   def detect_death
-    unique_positions = $player.position.uniq
-    if unique_positions != $player.position
-      $game_rule.game_state = 'death'
+    
+    $player.position[0...-1].each do |element|
+      if element == $player.position.last
+        $game_rule.game_state = 'death'
+        break
+      end
     end
+
   end
 
   def on_enter_down
@@ -40,5 +48,9 @@ class GameRule
 
   def exit
     Window.close
+  end
+
+  def add_score
+    $game_rule.score = $game_rule.score + 1
   end
 end

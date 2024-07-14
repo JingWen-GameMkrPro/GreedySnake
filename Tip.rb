@@ -1,14 +1,31 @@
 require 'ruby2d'
 
-WELCOME_TIP = 'Welcome to Greedy Snake ! (Press \'Enter\' to Start...)'
-PLAYING_TIP = 'Score: ... (Press \'Enter\' to Exit...)'
-DEATH_TIP = 'Game Over ! (Press \'Enter\' to Restart...)'
+
+
 class Tip
   attr_accessor :current_tip
 
   def initialize
-    @current_tip = WELCOME_TIP
+    @welcome_tip = 'Welcome to Greedy Snake ! (Press \'Enter\' to Start...)'
+    @playing_tip = "Score: (#{$game_rule.score}) (Press \'Enter\' to Exit...)"
+    @death_tip = 'Game Over ! (Press \'Enter\' to Restart...)'
+    @current_tip = @welcome_tip
+    @score_cache = $game_rule.score
   end
+
+  def update
+    detect_score
+  end
+
+
+  def detect_score
+    if $game_rule.score != @score_cache
+      @playing_tip = "Score: (#{$game_rule.score}) (Press \'Enter\' to Exit...)"
+      @score_cache = $game_rule.score
+    end
+  end
+
+
 
   def draw_tip
     change_tip
@@ -18,11 +35,11 @@ class Tip
   def change_tip
     case $game_rule.game_state
     when 'wait'
-      $tip.current_tip = WELCOME_TIP
+      $tip.current_tip = @welcome_tip
     when 'playing'
-      $tip.current_tip = PLAYING_TIP
+      $tip.current_tip = @playing_tip
     when 'death'
-      $tip.current_tip = DEATH_TIP
+      $tip.current_tip = @death_tip
     end
   end
 end
