@@ -1,6 +1,7 @@
 # 說明這份程式碼檔案，還會需要哪些其他檔案！
 require 'ruby2d'
 
+# 提示文字類別藍圖
 class Tip
   # 賦權以取用其他實例的資料
   attr_accessor :current_tip

@@ -1,6 +1,7 @@
 # 說明這份程式碼檔案，還會需要哪些其他檔案！
 require 'ruby2d'
 
+# 玩家類別藍圖，負責偵測玩家的輸入，並更新玩家的位置數據
 class Player
   # 賦權以取用其他實例的資料
   attr_accessor :direction
